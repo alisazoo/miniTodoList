@@ -9,5 +9,8 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+
+<%--<jsp:include page="/register/register.jsp"></jsp:include>--%>
+
 </body>
 </html>
