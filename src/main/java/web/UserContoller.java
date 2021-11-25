@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/register")
 public class UserContoller extends HttpServlet {
-    public static final long srerialVerionUID = 1L;
+    public static final long serialVersionUID = 1L;
     private UserDao userDao;
 
     public void init(){
@@ -36,6 +36,7 @@ public class UserContoller extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        System.out.println("register!");
 
         User employee = new User();
         employee.setFirstName(firstName);
