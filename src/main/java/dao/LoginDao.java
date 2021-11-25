@@ -13,6 +13,8 @@ public class LoginDao {
     public boolean validate(LoginBean loginBean) throws ClassNotFoundException{
         boolean status = false;
 
+        Class.forName("com.mysql.jdbc.Driver");
+
         try(Connection connection = JDBCUtils.getConnection();
             // Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(

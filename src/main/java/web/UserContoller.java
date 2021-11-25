@@ -38,14 +38,14 @@ public class UserContoller extends HttpServlet {
         String password = request.getParameter("password");
         System.out.println("register!");
 
-        User employee = new User();
-        employee.setFirstName(firstName);
-        employee.setLastName(lastName);
-        employee.setUsername(username);
-        employee.setPassword(password);
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUsername(username);
+        user.setPassword(password);
 
         try{
-            int result = userDao.registerEmployee(employee);
+            int result = userDao.registerUser(user);
             if(result == 1){
                 request.setAttribute("NOTIFICATION", "User Registered Successfully");
             }

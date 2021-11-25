@@ -9,9 +9,9 @@ import java.time.LocalDate;
 public class JDBCUtils {
 
     // USE PostgreSQL
-    private static String jdbcURL = "jdbc:postgresql://localhost:5432/demo";
-    private static String jdbcUsername = "postgres";
-    private static String jdbcPassword = "arisa";
+    private static String jdbcURL = "jdbc:mysql://localhost:3306/demo";
+    private static String jdbcUsername = "root";
+    private static String jdbcPassword = "";
 
     public static Connection getConnection(){
         Connection connection = null;
