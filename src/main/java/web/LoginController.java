@@ -6,9 +6,13 @@ package web;
 // page; otherwise redirect to login.jsp page.
 
 import dao.LoginDao;
+import dao.TodoDao;
+import dao.TodoDaoImpl;
 import model.LoginBean;
+import model.Todo;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +26,8 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginDao loginDao;
+
+    private TodoDao todoDao;
 
     public void init(){
         loginDao = new LoginDao();
@@ -47,6 +53,11 @@ public class LoginController extends HttpServlet {
 
         try {
             if (loginDao.validate(loginBean)) {
+
+                todoDao = new TodoDaoImpl();
+                List<Todo> listTodo = todoDao.selectAllTodos();
+                request.setAttribute("listTodo", listTodo);
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("todo/todo-list.jsp");
                 dispatcher.forward(request, response);
             } else {

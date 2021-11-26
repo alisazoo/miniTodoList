@@ -37,15 +37,16 @@
 <div class="container col-md-5">
   <div class="card">
     <div class="card-body">
+
       <%--      // todo cannot resolve variable todo--%>
       <c:if test="${todo != null}">
       <%--      // todo cannot resolve file update--%>
-      <form action="update" method="post">
-        </c:if>
-        <%--      // todo cannot resolve variable todo & file insert--%>
-        <c:if test="${todo == null}">
+        <form action="update" method="post">
+      </c:if>
+      <%--      // todo cannot resolve variable todo & file insert--%>
+      <c:if test="${todo == null}">
         <form action="insert" method="post">
-          </c:if>
+      </c:if>
 
           <caption>
             <h2>
@@ -63,23 +64,23 @@
           </c:if>
 
           <fieldset class="form-group">
-            <label>Todo Title</label> <input type="text"
-                                             value="<c:out value='${todo.title}' />" class="form-control"
-                                             name="title" required="required" minlength="5">
+            <label>Todo Title</label>
+              <input type="text" value="<c:out value='${todo.title}' />"
+                     class="form-control" name="title" required="required" minlength="5">
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Todo Decription</label> <input type="text"
-                                                  value="<c:out value='${todo.description}' />" class="form-control"
-                                                  name="description" minlength="5">
+            <label>Todo Decription</label>
+              <input type="text" value="<c:out value='${todo.description}' />"
+                     class="form-control" name="description" minlength="5">
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Todo Status</label> <select class="form-control"
-                                               name="isDone">
-            <option value="false">In Progress</option>
-            <option value="true">Complete</option>
-          </select>
+            <label>Todo Status</label>
+            <select class="form-control" name="isDone">
+                <option value="false">In Progress</option>
+                <option value="true">Complete</option>
+            </select>
           </fieldset>
 
           <fieldset class="form-group">
