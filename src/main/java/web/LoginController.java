@@ -51,6 +51,9 @@ public class LoginController extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 HttpSession session = request.getSession();
+
+                //todo add notification: wrong id and pass is entered.
+
                 // session.setAttribute("user", username);
                 // response.sendRedirect("login.jsp");
             }

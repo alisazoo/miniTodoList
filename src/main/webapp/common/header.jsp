@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: arisa
-  Date: 30/09/2021
-  Time: 14:47
-  To change this template use File | Settings | File Templates.
---%>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: tomato">

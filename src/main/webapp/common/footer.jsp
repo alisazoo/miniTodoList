@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: arisa
-  Date: 30/09/2021
-  Time: 14:48
-  To change this template use File | Settings | File Templates.
---%>
 <style>
     .footer {
         position: fixed;

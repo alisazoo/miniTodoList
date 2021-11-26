@@ -56,6 +56,7 @@ public class TodoController extends HttpServlet {
 					listTodo(request, response);
 					break;
 				default:
+					// this page is displayed at the very first.
 					RequestDispatcher dispatcher =
 							request.getRequestDispatcher("login/login.jsp");
 					dispatcher.forward(request, response);
@@ -129,8 +130,6 @@ public class TodoController extends HttpServlet {
 		todoDao.updateTodo(updateTodo);
 		response.sendRedirect("list");
 	}
-
-
 
 	private void deleteTodo(HttpServletRequest request,
 	                        HttpServletResponse response)
