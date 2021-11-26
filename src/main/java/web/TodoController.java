@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet("/")
@@ -119,7 +118,7 @@ public class TodoController extends HttpServlet {
 	                        HttpServletResponse response)
 		throws SQLException, IOException{
 		int id = Integer.parseInt(request.getParameter("id"));
-		String title = request.getParameter("titile");
+		String title = request.getParameter("title");
 		String username = request.getParameter("username");
 		String description = request.getParameter("description");
 		LocalDate targetDate = LocalDate.parse(request.getParameter(
