@@ -58,7 +58,8 @@ public class LoginController extends HttpServlet {
                 List<Todo> listTodo = todoDao.selectAllTodos();
                 request.setAttribute("listTodo", listTodo);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("todo/todo-list.jsp");
+                RequestDispatcher dispatcher =
+                        request.getRequestDispatcher("todo/todo-list.jsp");
                 dispatcher.forward(request, response);
             } else {
                 HttpSession session = request.getSession();
