@@ -23,7 +23,7 @@ public class TodoDaoImpl implements TodoDao{
 					" " +
 					"FROM todos WHERE task_id = ?;";
 	private static final String SELECT_ALL_TODOS =
-			"SELECT * FROM todos;";
+			"SELECT * FROM todos WHERE FK_user_id_users = ?;";
 	private static final String DELETE_TODO_BY_ID =
 			"DELETE FROM todos WHERE task_id = ?;";
 	private static final String UPDATE_TODO =
@@ -80,20 +80,21 @@ public class TodoDaoImpl implements TodoDao{
 	}
 
 	@Override
-	public List<Todo> selectAllTodos(int id) {
+	public List<Todo> selectAllTodos(int userId) {
 
 		List<Todo> todos = new ArrayList<>();
 
 		try(Connection connection = JDBCUtils.getConnection();
 			PreparedStatement preparedStatement =
 					connection.prepareStatement(SELECT_ALL_TODOS)){
-			System.out.println(preparedStatement);
+			preparedStatement.setInt(1, userId);
+			System.out.println("selectAllTodos: " + preparedStatement);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()){
 
 				int task_id = resultSet.getInt("task_id");
 				String task_name = resultSet.getString("task_name");
-				String user_id = String.valueOf(id);
+				String user_id = String.valueOf(userId);
 				LocalDate targetDate = resultSet.getDate("target_date").toLocalDate();
 				boolean isDone = resultSet.getBoolean("is_done");
 
