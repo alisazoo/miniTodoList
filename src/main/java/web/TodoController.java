@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -71,7 +72,12 @@ public class TodoController extends HttpServlet {
 	private void listTodo(HttpServletRequest request,
 	                      HttpServletResponse response)
 		throws SQLException, IOException, ServletException{
-		List<Todo> listTodo = todoDao.selectAllTodos();
+
+		HttpSession session = request.getSession();
+		int user_id =
+				Integer.parseInt( String.valueOf(session.getAttribute(
+						"user_id")) );
+		List<Todo> listTodo = todoDao.selectAllTodos(user_id);
 		request.setAttribute("listTodo", listTodo);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-list.jsp");
@@ -81,6 +87,11 @@ public class TodoController extends HttpServlet {
 	private void showNewForm(HttpServletRequest request,
 	                         HttpServletResponse response)
 		throws ServletException, IOException{
+
+		// todo delete the following:
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("user_id") );
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-form.jsp");
 		dispatcher.forward(request, response);
@@ -90,6 +101,8 @@ public class TodoController extends HttpServlet {
 	                          HttpServletResponse response)
 			// todo why these 3 exception can be handled here?
 			throws SQLException, IOException, ServletException {
+
+		// todo: check the kind of id: task or user?
 		int id = Integer.parseInt(request.getParameter("id"));
 		Todo existingTodo = todoDao.selectTodo(id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
@@ -102,15 +115,16 @@ public class TodoController extends HttpServlet {
 	private void insertTodo(HttpServletRequest request,
 	                        HttpServletResponse response)
 		throws SQLException, IOException{
-		String title = request.getParameter("title");
-		String username = request.getParameter("username");
-		String description = request.getParameter("description");
+
+		HttpSession session = request.getSession();
+		String user_id = String.valueOf( session.getAttribute("user_id") );
+
+		String task_name = request.getParameter("task_name");
 		boolean isDone = Boolean.parseBoolean(request.getParameter("isDone"));
 //		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 //		LocalDate targetDate = LocalDate.parse(request.getParameter(
 //				"targetDate"), df);
-		Todo newTodo = new Todo(title, username, description, LocalDate.now()
-				, isDone);
+		Todo newTodo = new Todo(task_name, user_id, LocalDate.now(), isDone);
 		todoDao.insertTodo(newTodo);
 		//todo what is sendRedirect()?
 		response.sendRedirect("list");
@@ -119,15 +133,14 @@ public class TodoController extends HttpServlet {
 	private void updateTodo(HttpServletRequest request,
 	                        HttpServletResponse response)
 		throws SQLException, IOException{
-		int id = Integer.parseInt(request.getParameter("id"));
-		String title = request.getParameter("title");
-		String username = request.getParameter("username");
-		String description = request.getParameter("description");
+
+		int task_id = Integer.parseInt(request.getParameter("task_id"));
+		String task_name = request.getParameter("task_name");
+		String user_id = request.getParameter("user_id");
 		LocalDate targetDate = LocalDate.parse(request.getParameter(
 				"targetDate"));
 		boolean isDone = Boolean.parseBoolean(request.getParameter("isDone"));
-		Todo updateTodo = new Todo(id, title, username,description,
-				targetDate, isDone);
+		Todo updateTodo = new Todo(task_id, task_name, user_id, targetDate, isDone);
 		todoDao.updateTodo(updateTodo);
 		response.sendRedirect("list");
 	}

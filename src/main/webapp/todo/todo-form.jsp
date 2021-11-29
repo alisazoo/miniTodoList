@@ -60,19 +60,20 @@
           </caption>
 
           <c:if test="${todo != null}">
-            <input type="hidden" name="id" value="<c:out value='${todo.id}' />" />
+<%--              //todo check the kind of this id--%>
+            <input type="hidden" name="task_id" value="<c:out
+            value='${todo.task_id}' />" />
           </c:if>
+
+<%--          // todo send user id--%>
+<%--          <input type="hidden" name="user_io" value="<c: out --%>
+<%--          value='${user_id}' />" />--%>
 
           <fieldset class="form-group">
             <label>Todo Title</label>
-              <input type="text" value="<c:out value='${todo.title}' />"
-                     class="form-control" name="title" required="required" minlength="5">
-          </fieldset>
-
-          <fieldset class="form-group">
-            <label>Todo Decription</label>
-              <input type="text" value="<c:out value='${todo.description}' />"
-                     class="form-control" name="description" minlength="5">
+              <input type="text" value="<c:out value='${todo.task_name}' />"
+                     class="form-control" name="task_name"
+                     required="required" minlength="2">
           </fieldset>
 
           <fieldset class="form-group">

@@ -54,20 +54,20 @@ public class LoginController extends HttpServlet {
         try {
             if (loginDao.validate(loginBean)) {
 
+                // Retrieve the user_id of the user &
+                // set the user_id as a session attribute
+                int user_id = loginDao.returnID(loginBean);
+                HttpSession session = request.getSession();
+                session.setAttribute("user_id", user_id);
+
+                //Set the related todos as attributes on the request obj.
                 todoDao = new TodoDaoImpl();
-                List<Todo> listTodo = todoDao.selectAllTodos();
+                List<Todo> listTodo = todoDao.selectAllTodos(user_id);
                 request.setAttribute("listTodo", listTodo);
 
                 RequestDispatcher dispatcher =
                         request.getRequestDispatcher("todo/todo-list.jsp");
                 dispatcher.forward(request, response);
-            } else {
-                HttpSession session = request.getSession();
-
-                //todo add notification: wrong id and pass is entered.
-
-                // session.setAttribute("user", username);
-                // response.sendRedirect("login.jsp");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -4,64 +4,53 @@ import java.time.LocalDate;
 
 public class Todo {
 
-	private int id;
-	private String title;
-	private String username;
-	private String description;
+	private int task_id;
+	private String task_name;
+	private String user_id;
 	private LocalDate targetDate;
 	private boolean status;
 
 	protected Todo(){
 	}
 
-	public Todo(int id, String title, String username, String description,
+	public Todo(int task_id, String task_name, String user_id,
 	            LocalDate targetDate, boolean status) {
-		this.id = id;
-		this.title = title;
-		this.username = username;
-		this.description = description;
+		this.task_id = task_id;
+		this.task_name = task_name;
+		this.user_id = user_id;
 		this.targetDate = targetDate;
 		this.status = status;
 	}
 
-	public Todo(String title, String username, String description, LocalDate targetDate, boolean status) {
-		this.title = title;
-		this.username = username;
-		this.description = description;
+	public Todo(String task_name, String user_id, LocalDate targetDate, boolean status) {
+		this.task_name = task_name;
+		this.user_id = user_id;
 		this.targetDate = targetDate;
 		this.status = status;
 	}
 
-	public int getId() {
-		return id;
+	public int getTask_id() {
+		return task_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTask_id(int task_id) {
+		this.task_id = task_id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getTask_name() {
+		return task_name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTask_name(String task_name) {
+		this.task_name = task_name;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public LocalDate getTargetDate() {
@@ -89,7 +78,7 @@ public class Todo {
 		if(getClass() != obj.getClass())
 			return false;
 		Todo other = (Todo) obj;
-		return id == other.id;
+		return task_id == other.task_id;
 // todo check equivalent to above?
 //		if(id != other.id)
 //			return false;

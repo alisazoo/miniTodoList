@@ -11,7 +11,7 @@ public interface TodoDao {
 
 	Todo selectTodo(int todoId);
 
-	List<Todo> selectAllTodos();
+	List<Todo> selectAllTodos(int user_id);
 
 	boolean deleteTodo(int id) throws SQLException;
 
