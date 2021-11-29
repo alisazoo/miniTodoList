@@ -87,11 +87,6 @@ public class TodoController extends HttpServlet {
 	private void showNewForm(HttpServletRequest request,
 	                         HttpServletResponse response)
 		throws ServletException, IOException{
-
-		// todo delete the following:
-		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("user_id") );
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-form.jsp");
 		dispatcher.forward(request, response);
@@ -99,15 +94,19 @@ public class TodoController extends HttpServlet {
 
 	private void showEditForm(HttpServletRequest request,
 	                          HttpServletResponse response)
-			// todo why these 3 exception can be handled here?
+			// todo: check why these 3 exception can be handled here?
 			throws SQLException, IOException, ServletException {
 
-		// todo: check the kind of id: task or user?
-		int id = Integer.parseInt(request.getParameter("id"));
-		Todo existingTodo = todoDao.selectTodo(id);
+		HttpSession session = request.getSession();
+		int user_id =
+				Integer.parseInt( String.valueOf(session.getAttribute(
+						"user_id")) );
+
+		int task_id = Integer.parseInt(request.getParameter("task_id"));
+				System.out.println("task_id in showEditForm: " + task_id);
+		Todo existingTodo = todoDao.selectTodo(task_id, user_id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-form.jsp");
-		// todo the role of this attribute?
 		request.setAttribute("todo", existingTodo);
 		dispatcher.forward(request, response);
 	}
@@ -136,7 +135,10 @@ public class TodoController extends HttpServlet {
 
 		int task_id = Integer.parseInt(request.getParameter("task_id"));
 		String task_name = request.getParameter("task_name");
-		String user_id = request.getParameter("user_id");
+
+		HttpSession session = request.getSession();
+		String user_id = String.valueOf( session.getAttribute("user_id") );
+
 		LocalDate targetDate = LocalDate.parse(request.getParameter(
 				"targetDate"));
 		boolean isDone = Boolean.parseBoolean(request.getParameter("isDone"));
@@ -148,8 +150,8 @@ public class TodoController extends HttpServlet {
 	private void deleteTodo(HttpServletRequest request,
 	                        HttpServletResponse response)
 		throws SQLException, IOException{
-		int id = Integer.parseInt(request.getParameter("id"));
-		todoDao.deleteTodo(id);
+		int task_id = Integer.parseInt(request.getParameter("task_id"));
+		todoDao.deleteTodo(task_id);
 		response.sendRedirect("list");
 	}
 

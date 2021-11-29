@@ -64,10 +64,13 @@
                     <td><c:out value="${todo.targetDate}" /></td>
                     <td><c:out value="${todo.status}" /></td>
 
-                    <td><a href="edit?id=<c:out value='${todo.task_id}' />">Edit
+                    <td><a
+                            href="edit?task_id=<c:out value='${todo.task_id}'
+                            />">Edit
                     </a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="delete?id=<c:out value='${todo.task_id}'
+                                href="delete?task_id=<c:out
+                                value='${todo.task_id}'
                                 />">Delete</a></td>
 
                     <!--  <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button>

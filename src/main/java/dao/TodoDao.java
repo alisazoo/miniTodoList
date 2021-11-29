@@ -9,7 +9,7 @@ public interface TodoDao {
 
 	void insertTodo(Todo todo) throws SQLException;
 
-	Todo selectTodo(int todoId);
+	Todo selectTodo(int taskId, int userId);
 
 	List<Todo> selectAllTodos(int user_id);
 

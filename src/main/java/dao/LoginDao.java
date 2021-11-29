@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDao {
-    
+
     public boolean validate(LoginBean loginBean) throws ClassNotFoundException{
         boolean status = false;
 

@@ -52,14 +52,14 @@ public class TodoDaoImpl implements TodoDao{
 	}
 
 	@Override
-	public Todo selectTodo(int todoId) {
+	public Todo selectTodo(int task_Id, int user_Id) {
 		Todo todo = null;
 		// 1.Establish a Connection
 		try(Connection connection = JDBCUtils.getConnection();
 		    // 2. Create a statement using connection object
 			PreparedStatement preparedStatement =
 					connection.prepareStatement(SELECT_TODO_BY_ID)){
-			preparedStatement.setLong(1,todoId);
+			preparedStatement.setLong(1,task_Id);
 			System.out.println(preparedStatement);
 			// 3. Execute the query or update query
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -68,7 +68,7 @@ public class TodoDaoImpl implements TodoDao{
 				int task_id = resultSet.getInt("task_id");
 				String task_name = resultSet.getString("task_name");
 				// todo: check the value of user_id
-				String user_id = resultSet.getString("user_id");
+				String user_id= String.valueOf(user_Id);
 				LocalDate targetDate = resultSet.getDate("target_date").toLocalDate();
 				boolean isDone = resultSet.getBoolean("is_done");
 				todo = new Todo(task_id, task_name, user_id, targetDate, isDone);
@@ -107,12 +107,12 @@ public class TodoDaoImpl implements TodoDao{
 	}
 
 	@Override
-	public boolean deleteTodo(int id) throws SQLException {
+	public boolean deleteTodo(int task_id) throws SQLException {
 		boolean rowDeleted;
 		try(Connection connection = JDBCUtils.getConnection();
 			PreparedStatement preparedStatement =
 					connection.prepareStatement(DELETE_TODO_BY_ID)){
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, task_id);
 			rowDeleted = preparedStatement.executeUpdate() > 0;
 		}
 		return rowDeleted;
