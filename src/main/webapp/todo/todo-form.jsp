@@ -3,32 +3,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-  <title>User Management Application</title>
-
-  <link rel="stylesheet"
+    <title>Mini Todo List</title>
+    <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../styles/main.css" type="text/css">
 </head>
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark"
-       style="background-color: tomato">
+  <nav class="navbar navbar-expand-md">
     <div>
       <a href="https://www.javaguides.net" class="navbar-brand"> Todo
         App</a>
     </div>
 
     <ul class="navbar-nav">
-<%--      // todo cannot resolve file list--%>
       <li><a href="<%=request.getContextPath()%>/list"
              class="nav-link">Todos</a></li>
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <%--      // todo cannot resolve file logout--%>
       <li><a href="<%=request.getContextPath()%>/logout"
              class="nav-link">Logout</a></li>
     </ul>
@@ -38,12 +34,9 @@
   <div class="card">
     <div class="card-body">
 
-      <%--      // todo cannot resolve variable todo--%>
       <c:if test="${todo != null}">
-      <%--      // todo cannot resolve file update--%>
         <form action="update" method="post">
       </c:if>
-      <%--      // todo cannot resolve variable todo & file insert--%>
       <c:if test="${todo == null}">
         <form action="insert" method="post">
       </c:if>
@@ -60,14 +53,9 @@
           </caption>
 
           <c:if test="${todo != null}">
-<%--              //todo check the kind of this id--%>
             <input type="hidden" name="task_id" value="<c:out
             value='${todo.task_id}' />" />
           </c:if>
-
-<%--          // todo send user id--%>
-<%--          <input type="hidden" name="user_io" value="<c: out --%>
-<%--          value='${user_id}' />" />--%>
 
           <fieldset class="form-group">
             <label>Todo Title</label>
@@ -96,7 +84,6 @@
   </div>
 </div>
 
-<%--// todo the tag has empty body--%>
 <jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

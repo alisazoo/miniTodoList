@@ -6,19 +6,17 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Insert title here</title>
-    <%--    //todo check: local library for bootstrap (need?)--%>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/main.css" type="text/css">
 </head>
 
 <body>
-<%--    // todo check: XML tag without body--%>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <div class="container">
 
     <h2>User Register Form</h2>
     <div class="col-md-6 col-md-offset-3">
         <div class="alert alert-success center" role="alert">
-<%--            //todo check the value--%>
             <p>${NOTIFICATION}</p>
         </div>
 
@@ -49,7 +47,6 @@
         </form>
     </div>
 </div>
-<%--    // todo check: XML tag without body--%>
 <jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 

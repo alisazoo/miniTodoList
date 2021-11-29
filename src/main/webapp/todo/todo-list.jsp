@@ -3,26 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Mini Todo List</title>
 
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/main.css" type="text/css">
 </head>
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: tomato">
+    <nav class="navbar navbar-expand-md">
         <div>
             <a href="https://www.javaguides.net" class="navbar-brand"> Todo
                 App</a>
         </div>
 
         <ul class="navbar-nav">
-<%--            // todo cannot resolve file and variables list, logout listTodo, --%>
-<%--            edit, delete--%>
             <li><a href="<%=request.getContextPath()%>/list"
                    class="nav-link">Todos</a></li>
         </ul>
@@ -39,12 +37,20 @@
 
     <div class="container">
         <h3 class="text-center">List of Todos</h3>
-        <hr>
-        <div class="container text-left">
 
+        <div class="container text-left">
             <a href="<%=request.getContextPath()%>/new"
-               class="btn btn-success">Add Todo</a>
+               class="btn btn-secondary">Add Todo</a>
         </div>
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+        </div>
+
         <br>
         <table class="table table-bordered">
             <thead>
