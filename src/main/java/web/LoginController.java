@@ -62,7 +62,7 @@ public class LoginController extends HttpServlet {
 
                 //Set the related todos as attributes on the request obj.
                 todoDao = new TodoDaoImpl();
-                List<Todo> listTodo = todoDao.selectAllTodos(user_id);
+                List<Todo> listTodo = todoDao.listTodos(user_id, "/list");
                 request.setAttribute("listTodo", listTodo);
 
                 RequestDispatcher dispatcher =

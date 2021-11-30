@@ -52,6 +52,20 @@
         </div>
 
         <br>
+
+<%--        //todo fix the button link: Not compatible style with HTML5--%>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">
+                <a href="<%=request.getContextPath()%>/listtoday">Today</a></button>
+            <button type="button" class="btn btn-secondary">
+                <a href="<%=request.getContextPath()%>/list2days">Today &
+                    Tomorrow</a>
+            </button>
+            <button type="button" class="btn btn-secondary">
+                <a href="<%=request.getContextPath()%>/list">All</a>
+            </button>
+        </div>
+
         <table class="table table-bordered">
             <thead>
             <tr>

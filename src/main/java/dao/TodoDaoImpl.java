@@ -24,6 +24,18 @@ public class TodoDaoImpl implements TodoDao{
 					"FROM todos WHERE task_id = ?;";
 	private static final String SELECT_ALL_TODOS =
 			"SELECT * FROM todos WHERE FK_user_id_users = ?;";
+
+	private static final String SELECT_TODOS_TODAY =
+			"SELECT * FROM todos " +
+					"WHERE FK_user_id_users = ? AND (target_date = current_date);";
+	private static final String SELECT_TODOS_2DAYS
+			= "SELECT * FROM todos " +
+				"WHERE FK_user_id_users = ? " +
+				"AND (" +
+				"target_date  BETWEEN current_date AND " +
+				"(ADDDATE(current_date, INTERVAL 1 DAY))" +
+				");";
+
 	private static final String DELETE_TODO_BY_ID =
 			"DELETE FROM todos WHERE task_id = ?;";
 	private static final String UPDATE_TODO =
@@ -80,15 +92,27 @@ public class TodoDaoImpl implements TodoDao{
 	}
 
 	@Override
-	public List<Todo> selectAllTodos(int userId) {
+	public List<Todo> listTodos(int userId, String action) {
 
 		List<Todo> todos = new ArrayList<>();
+		String sqlString;
+		switch(action){
+			case "/listtoday":
+				sqlString = SELECT_TODOS_TODAY;
+				break;
+			case "/list2days":
+				sqlString =SELECT_TODOS_2DAYS;
+				break;
+			default:
+				sqlString = SELECT_ALL_TODOS;
+		}
 
 		try(Connection connection = JDBCUtils.getConnection();
 			PreparedStatement preparedStatement =
-					connection.prepareStatement(SELECT_ALL_TODOS)){
+					connection.prepareStatement(sqlString)){
 			preparedStatement.setInt(1, userId);
-			System.out.println("selectAllTodos: " + preparedStatement);
+			System.out.println("selectAllTodos: " + preparedStatement + ", " +
+					"action = " + action);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()){
 

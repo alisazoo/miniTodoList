@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/")
@@ -55,7 +56,9 @@ public class TodoController extends HttpServlet {
 					updateTodo(request, response);
 					break;
 				case "/list":
-					listTodo(request, response);
+				case "/listtoday":
+				case "/list2days":
+					listTodo(request, response, action);
 					break;
 				default:
 					// this page is displayed at the very first.
@@ -70,14 +73,15 @@ public class TodoController extends HttpServlet {
 	}
 
 	private void listTodo(HttpServletRequest request,
-	                      HttpServletResponse response)
+	                      HttpServletResponse response, String action)
 		throws SQLException, IOException, ServletException{
 
 		HttpSession session = request.getSession();
 		int user_id =
 				Integer.parseInt( String.valueOf(session.getAttribute(
 						"user_id")) );
-		List<Todo> listTodo = todoDao.selectAllTodos(user_id);
+		List<Todo> listTodo;
+		listTodo = todoDao.listTodos(user_id, action);
 		request.setAttribute("listTodo", listTodo);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-list.jsp");
@@ -123,7 +127,12 @@ public class TodoController extends HttpServlet {
 //		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 //		LocalDate targetDate = LocalDate.parse(request.getParameter(
 //				"targetDate"), df);
-		Todo newTodo = new Todo(task_name, user_id, LocalDate.now(), isDone);
+
+		LocalDate targetDate = LocalDate.parse(request.getParameter("targetDate"));
+		if(targetDate == null)
+			targetDate = LocalDate.now();
+		System.out.println("targetDate (LocalDate): " + targetDate);
+		Todo newTodo = new Todo(task_name, user_id, targetDate, isDone);
 		todoDao.insertTodo(newTodo);
 		//todo what is sendRedirect()?
 		response.sendRedirect("list");
