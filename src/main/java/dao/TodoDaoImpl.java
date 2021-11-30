@@ -36,6 +36,10 @@ public class TodoDaoImpl implements TodoDao{
 				"(ADDDATE(current_date, INTERVAL 1 DAY))" +
 				");";
 
+//	private static final String SEARCH_TODOS =
+//			"SELECT * FROM todos WHERE FK_user_id_users = ? " +
+//					"AND task_name LIKE '%?%';";
+
 	private static final String DELETE_TODO_BY_ID =
 			"DELETE FROM todos WHERE task_id = ?;";
 	private static final String UPDATE_TODO =
@@ -91,6 +95,7 @@ public class TodoDaoImpl implements TodoDao{
 		return todo;
 	}
 
+
 	@Override
 	public List<Todo> listTodos(int userId, String action) {
 
@@ -130,6 +135,36 @@ public class TodoDaoImpl implements TodoDao{
 		}
 		return todos;
 	}
+
+	public List<Todo> searchTodo(int userId, String keyword){
+
+		List<Todo> todos = new ArrayList<>();
+		String SEARCH_TODOS =
+			"SELECT * FROM todos WHERE FK_user_id_users = " + userId +
+					" AND (task_name LIKE '%" + keyword +"%');";
+
+		try(Connection connection = JDBCUtils.getConnection();
+		    PreparedStatement preparedStatement =
+				    connection.prepareStatement(SEARCH_TODOS)){
+			System.out.println("searchTodos: " + preparedStatement);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()){
+
+				int task_id = resultSet.getInt("task_id");
+				String task_name = resultSet.getString("task_name");
+				String user_id = String.valueOf(userId);
+				LocalDate targetDate = resultSet.getDate("target_date").toLocalDate();
+				boolean isDone = resultSet.getBoolean("is_done");
+
+				todos.add(new Todo(task_id, task_name, user_id, targetDate,
+						isDone));
+			}
+		} catch (SQLException e) {
+			JDBCUtils.printSQLException(e);
+		}
+		return todos;
+	}
+
 
 	@Override
 	public boolean deleteTodo(int task_id) throws SQLException {

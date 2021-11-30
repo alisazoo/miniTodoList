@@ -13,6 +13,8 @@ public interface TodoDao {
 
 	List<Todo> listTodos(int user_id, String action);
 
+	List<Todo> searchTodo(int userId, String keyword);
+
 	boolean deleteTodo(int id) throws SQLException;
 
 	boolean updateTodo(Todo todo) throws SQLException;

@@ -43,12 +43,17 @@
                class="btn btn-secondary">Add Todo</a>
         </div>
 
+<%--        // todo check the class of each html tags--%>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search"
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Button</button>
-            </div>
+            <form action="search" method="post">
+                <input type="text" class="form-control"
+                       placeholder="Enter Keyword"
+                       name="keyword">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"
+                            type="submit">Search</button>
+                </div>
+            </form>
         </div>
 
         <br>

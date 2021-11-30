@@ -55,6 +55,10 @@ public class TodoController extends HttpServlet {
 				case "/update":
 					updateTodo(request, response);
 					break;
+				case "/search":
+					String keyword = request.getParameter("keyword");
+					showResult(request, response, keyword);
+					break;
 				case "/list":
 				case "/listtoday":
 				case "/list2days":
@@ -86,6 +90,23 @@ public class TodoController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
 				"/todo-list.jsp");
 		dispatcher.forward(request, response);
+	}
+
+	private void showResult(HttpServletRequest request,
+	HttpServletResponse response, String keyword)
+			throws SQLException, IOException, ServletException {
+
+		HttpSession session = request.getSession();
+		int user_id =
+				Integer.parseInt( String.valueOf(session.getAttribute(
+						"user_id")) );
+		List<Todo> listTodo;
+		listTodo = todoDao.searchTodo(user_id, keyword);
+		request.setAttribute("listTodo", listTodo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("todo" +
+				"/todo-list.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 	private void showNewForm(HttpServletRequest request,
