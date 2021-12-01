@@ -20,10 +20,11 @@ public class TodoDaoImpl implements TodoDao{
 			"VALUES (?, ?, ?, ?);" ;
 	private static final String SELECT_TODO_BY_ID =
 			"SELECT task_id, task_name, target_date, is_done" +
-					" " +
-					"FROM todos WHERE task_id = ?;";
+					" FROM todos WHERE task_id = ? " +
+					"ORDER BY target_date;";
 	private static final String SELECT_ALL_TODOS =
-			"SELECT * FROM todos WHERE FK_user_id_users = ?;";
+			"SELECT * FROM todos WHERE FK_user_id_users = ? " +
+					"ORDER BY target_date;";
 
 	private static final String SELECT_TODOS_TODAY =
 			"SELECT * FROM todos " +
@@ -34,14 +35,12 @@ public class TodoDaoImpl implements TodoDao{
 				"AND (" +
 				"target_date  BETWEEN current_date AND " +
 				"(ADDDATE(current_date, INTERVAL 1 DAY))" +
-				");";
-
-//	private static final String SEARCH_TODOS =
-//			"SELECT * FROM todos WHERE FK_user_id_users = ? " +
-//					"AND task_name LIKE '%?%';";
+				") " +
+				"ORDER BY target_date;";
 
 	private static final String DELETE_TODO_BY_ID =
-			"DELETE FROM todos WHERE task_id = ?;";
+			"DELETE FROM todos WHERE task_id = ? " +
+			"ORDER BY target_date;";
 	private static final String UPDATE_TODO =
 			"UPDATE todos SET task_name = ?, target_date = ?, is_done = ? " +
 					"WHERE task_id = ?;";
@@ -70,16 +69,12 @@ public class TodoDaoImpl implements TodoDao{
 	@Override
 	public Todo selectTodo(int task_Id, int user_Id) {
 		Todo todo = null;
-		// 1.Establish a Connection
 		try(Connection connection = JDBCUtils.getConnection();
-		    // 2. Create a statement using connection object
 			PreparedStatement preparedStatement =
 					connection.prepareStatement(SELECT_TODO_BY_ID)){
 			preparedStatement.setLong(1,task_Id);
 			System.out.println(preparedStatement);
-			// 3. Execute the query or update query
 			ResultSet resultSet = preparedStatement.executeQuery();
-			// 4. Process the ResultSet object.
 			while(resultSet.next()){
 				int task_id = resultSet.getInt("task_id");
 				String task_name = resultSet.getString("task_name");
@@ -141,7 +136,8 @@ public class TodoDaoImpl implements TodoDao{
 		List<Todo> todos = new ArrayList<>();
 		String SEARCH_TODOS =
 			"SELECT * FROM todos WHERE FK_user_id_users = " + userId +
-					" AND (task_name LIKE '%" + keyword +"%');";
+					" AND (task_name LIKE '%" + keyword +"%') " +
+					"ORDER BY target_date;";
 
 		try(Connection connection = JDBCUtils.getConnection();
 		    PreparedStatement preparedStatement =
