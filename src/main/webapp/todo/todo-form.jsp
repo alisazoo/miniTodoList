@@ -13,22 +13,19 @@
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-md">
-    <div>
-      <a href="https://www.javaguides.net" class="navbar-brand"> Todo
-        App</a>
-    </div>
+    <header>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a href="<%=request.getContextPath()%>/list"
+               class="navbar-brand"> Mini Todo List</a>
 
-    <ul class="navbar-nav">
-      <li><a href="<%=request.getContextPath()%>/list"
-             class="nav-link">Todos</a></li>
-    </ul>
-
-    <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a href="<%=request.getContextPath()%>/logout"
-             class="nav-link">Logout</a></li>
-    </ul>
-  </nav>
+            <ul class="nav list-inline ml-auto">
+                <li class="list-inline-item">
+                    <a href="<%=request.getContextPath()%>/logout"
+                       class="nav-link col-4">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 </header>
 <div class="container col-md-5">
   <div class="card">
