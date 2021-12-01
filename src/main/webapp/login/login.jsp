@@ -10,9 +10,10 @@
 
     <jsp:include page="../common/header.jsp"></jsp:include>
 
-    <div class="container col-md-8 col-md-offset-3"
+    <div class="container col-md-4 col-md-offset-3"
          style="overflow: auto">
         <h1>Login Form</h1>
+
         <form action="<%=request.getContextPath()%>/login" method="post">
 
             <div class="form-group">
