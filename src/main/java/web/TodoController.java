@@ -35,8 +35,10 @@ public class TodoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	                     HttpServletResponse response)
 		throws ServletException, IOException{
-		String action = request.getServletPath();
+
 		request.setCharacterEncoding("utf-8");
+
+		String action = request.getServletPath();
 
 		try{
 			switch(action){

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <html>
 <head>
     <title>Mini Todo List</title>
@@ -8,13 +10,15 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+<%--    <link rel="stylesheet" href="${root}/styles/main.css" type="text/css">--%>
 </head>
 
 <body>
+
 <header>
     <header>
-        <nav class="navbar navbar-light bg-light justify-content-between">
+        <nav class="navbar navbar-light bg-light justify-content-between"
+             style="margin-bottom: 1em;">
             <a href="<%=request.getContextPath()%>/list"
                class="navbar-brand"> Mini Todo List</a>
 

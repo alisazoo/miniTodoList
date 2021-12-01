@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+
 <html>
 <head>
     <title>Mini Todo List</title>
@@ -9,58 +11,44 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/main.css" type="text/css">
+    <link rel="stylesheet" href="${root}/styles/main.css" type="text/css">
+
 </head>
 
 <body>
 
-<header>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a href="<%=request.getContextPath()%>/list"
-               class="navbar-brand"> Mini Todo List</a>
-
-        <ul class="nav list-inline ml-auto">
-            <li class="list-inline-item">
-                <form action="search" method="post" class="form-inline">
-                        <input type="text" class="form-control"
-                           placeholder="Enter Keyword"
-                           name="keyword">
-                        <button class="btn btn-outline-secondary"
-                                type="submit">Search</button>
-                </form>
-            </li>
-            <li class="list-inline-item">
-                <a href="<%=request.getContextPath()%>/logout"
-                       class="nav-link col-4">Logout</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+<jsp:include page="../common/header.jsp"></jsp:include>
 
 <div class="container">
 
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center" style="margin-top: 1em">
         <div class="col align-self-center col-md-auto">
-            <button class="btn btn-outline-secondary" type="button">
-                <a href="<%=request.getContextPath()%>/new" class="text-center">Add Todo</a>
-            </button>
+            <a href="<%=request.getContextPath()%>/new"
+               class="btn btn-secondary" role="button">Add Todo</a>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 1em">
         <div class="col-sm">
-            <h1 class="text-center"><a href="<%=request.getContextPath()%>/listtoday">Today</a></h1>
+            <h2 class="text-center align-bottom">
+                <a href="<%=request.getContextPath()%>/listtoday">Today</a>
+            </h2>
         </div>
         <div class="col-sm">
-            <h1 class="text-center"><a href="<%=request.getContextPath()%>/list2days">Today & Tomorrow</a></h1>
+            <h2 class="text-center align-bottom">
+                <a href="<%=request.getContextPath()%>/list2days">Today & Tomorrow</a>
+            </h2>
         </div>
         <div class="col-sm">
-            <h1 class="text-center"><a href="<%=request.getContextPath()%>/list"
-                    class="text-center">All</a></h1>
+            <h2 class="text-center align-bottom">
+                <a href="<%=request.getContextPath()%>/list"
+                    class="text-center">All</a>
+            </h2>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 1em">
+        <p></p>
         <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
         <div class="container">

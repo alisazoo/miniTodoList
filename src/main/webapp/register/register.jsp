@@ -16,7 +16,8 @@
 
         <h1>User Register Form</h1>
             <p class="text-info">${NOTIFICATION}</p>
-
+            <p class="text-info">Back to
+                <a href="<%=request.getContextPath()%>/login">Login</a>?</p>
             <form action="<%=request.getContextPath()%>/register" method="post">
 
                 <div class="form-group">
