@@ -53,7 +53,8 @@ public class UserContoller extends HttpServlet {
             e.printStackTrace();
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register/register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login" +
+                "/login.jsp");
         dispatcher.forward(request, response);
 
     }

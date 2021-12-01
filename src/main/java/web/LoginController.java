@@ -68,13 +68,16 @@ public class LoginController extends HttpServlet {
                 RequestDispatcher dispatcher =
                         request.getRequestDispatcher("todo/todo-list.jsp");
                 dispatcher.forward(request, response);
+            } else{
+                String alert = "Invalid login. Please try again or sign up.";
+                request.setAttribute("INVALIDLOGIN", alert);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(
+                        "login/login.jsp");
+                dispatcher.include(request, response);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-
     }
 
 }
