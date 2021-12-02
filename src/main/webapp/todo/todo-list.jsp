@@ -53,12 +53,12 @@
 
         <div class="container">
 
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Target Date</th>
-                    <th>Todo Status</th>
+                    <th>Due</th>
+                    <th>Task</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -67,18 +67,39 @@
                 <c:forEach var="todo" items="${listTodo}">
 
                     <tr>
-                        <td><c:out value="${todo.task_name}" /></td>
                         <td><c:out value="${todo.targetDate}" /></td>
-                        <td><c:out value="${todo.status}" /></td>
-
-                        <td><a
-                                href="edit?task_id=<c:out value='${todo.task_id}'
-                                />">Edit
-                        </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                    href="delete?task_id=<c:out
-                                    value='${todo.task_id}'
-                                    />">Delete</a></td>
+                        <td><c:out value="${todo.task_name}" /></td>
+                        <td>
+                            <c:if test="${!todo.status}">
+                                <a href="edit?task_id=<c:out
+                                value ='${todo.task_id}'/>"
+                                      class="btn btn-primary btn-sm"
+                                   role="button">
+                                    in progress
+                                </a>
+                            </c:if>
+                            <c:if test="${todo.status}">
+                                <a href="edit?task_id=<c:out
+                                value ='${todo.task_id}'/>"
+                                   class="btn btn-danger btn-sm" role="button">
+                                    complete
+                                </a>
+                            </c:if>
+                        </td>
+                        <td>
+                            <a href="edit?task_id=<c:out
+                            value='${todo.task_id}'/>"
+                               class="btn btn-outline-info btn-sm"
+                               role="button">
+                                Edit
+                            </a>
+                            <a href="delete?task_id=<c:out
+                            value='${todo.task_id}' />"
+                               class="btn btn-outline-warning btn-sm"
+                               role="button">
+                                Delete
+                            </a>
+                        </td>
 
                         <!--  <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button>
                                   <button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td> -->

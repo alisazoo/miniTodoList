@@ -11,7 +11,7 @@
     <div class="container col-md-4 col-md-offset-3"
          style="overflow: auto">
 
-        <h1>Login Form</h1>
+        <h1>Mini Todo List: Login</h1>
 
         <p class="text-info">${INVALIDLOGIN}</p>
 

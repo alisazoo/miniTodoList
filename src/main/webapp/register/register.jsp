@@ -11,40 +11,42 @@
 </head>
 
 <body>
-<jsp:include page="../common/header.jsp"></jsp:include>
-    <div class="container col-md-4 col-md-offset-3" style="overflow: auto">
 
-        <h1>User Register Form</h1>
-            <p class="text-info">${NOTIFICATION}</p>
-            <p class="text-info">Back to
-                <a href="<%=request.getContextPath()%>/login">Login</a>?</p>
-            <form action="<%=request.getContextPath()%>/register" method="post">
+<div class="container col-md-4 col-md-offset-3" style="overflow: auto">
 
-                <div class="form-group">
-                    <label for="firstname">First Name:</label> <input type="text"
-                                                                  class="form-control" id="firstname" placeholder="First Name" name="firstName" required>
-                </div>
+    <h1>Mini Todo List: User Register Form</h1>
+        <p class="text-info">${NOTIFICATION}</p>
+        <p class="text-secondary">Back to
+            <a href="<%=request.getContextPath()%>/login">Login</a>?</p>
+        <form action="<%=request.getContextPath()%>/register" method="post">
 
-                <div class="form-group">
-                    <label for="lastname">Last Name:</label> <input type="text"
-                                                                 class="form-control" id="lastname" placeholder="last Name" name="lastName" required>
-                </div>
+            <div class="form-group">
+                <label for="firstname">First Name:</label> <input type="text"
+                                                              class="form-control" id="firstname" placeholder="First Name" name="firstName" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="username">User Name:</label> <input type="text"
-                                                                  class="form-control" id="username" placeholder="User Name" name="username" required>
-                </div>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label> <input type="text"
+                                                             class="form-control" id="lastname" placeholder="last Name" name="lastName" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="password">Password:</label> <input type="password"
-                                                            class="form-control" id="password" placeholder="Password" name="password" required>
-                </div>
+            <div class="form-group">
+                <label for="username">User Name:</label> <input type="text"
+                                                              class="form-control" id="username" placeholder="User Name" name="username" required>
+            </div>
 
-                <button type="submit" class="btn btn-primary">Sign up</button>
+            <div class="form-group">
+                <label for="password">Password:</label> <input type="password"
+                                                        class="form-control" id="password" placeholder="Password" name="password" required>
+            </div>
 
-            </form>
-    </div>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+
+        </form>
+</div>
+
 <jsp:include page="../common/footer.jsp"></jsp:include>
+
 </body>
 
 </html>

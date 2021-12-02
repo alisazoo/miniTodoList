@@ -10,7 +10,7 @@
             <li class="list-inline-item" style="margin-top: 1em">
                 <form action="search" method="post" class="form-inline">
                     <input type="text" class="form-control"
-                           placeholder="Enter Keyword"
+                           placeholder="Find a task"
                            name="keyword">
                     <button class="btn btn-outline-secondary"
                             type="submit">Search</button>
