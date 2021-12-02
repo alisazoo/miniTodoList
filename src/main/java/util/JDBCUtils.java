@@ -8,14 +8,15 @@ import java.time.LocalDate;
 
 public class JDBCUtils {
 
-//    // MySQL: local
-//    private static String jdbcURL = "jdbc:mysql://localhost:3306/demo";
-//    private static String jdbcUsername = "root";
-//    private static String jdbcPassword = "";
+    // MySQL: local
+    private static String jdbcURL = "jdbc:mysql://localhost:3306/demo";
+    private static String jdbcUsername = "root";
+    private static String jdbcPassword = "";
 
-    private static String jdbcURL = "jdbc:mysql://beb2971136c7b4:0aacc976@us-cdbr-east-04.cleardb.com/heroku_b5acde81bd4bd6e?reconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8";
-    private static String jdbcUsername = "beb2971136c7b4";
-    private static String jdbcPassword = "0aacc976";
+//    // MySQL: Haroku
+//    private static String jdbcURL = "jdbc:mysql://beb2971136c7b4:0aacc976@us-cdbr-east-04.cleardb.com/heroku_b5acde81bd4bd6e?reconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8";
+//    private static String jdbcUsername = "beb2971136c7b4";
+//    private static String jdbcPassword = "0aacc976";
 
 
     public static Connection getConnection(){
