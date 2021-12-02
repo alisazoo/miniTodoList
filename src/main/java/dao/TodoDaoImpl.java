@@ -21,10 +21,10 @@ public class TodoDaoImpl implements TodoDao{
 	private static final String SELECT_TODO_BY_ID =
 			"SELECT task_id, task_name, target_date, is_done" +
 					" FROM todos WHERE task_id = ? " +
-					"ORDER BY target_date;";
+					"ORDER BY target_date DESC;";
 	private static final String SELECT_ALL_TODOS =
 			"SELECT * FROM todos WHERE FK_user_id_users = ? " +
-					"ORDER BY target_date;";
+					"ORDER BY target_date DESC;";
 
 	private static final String SELECT_TODOS_TODAY =
 			"SELECT * FROM todos " +
@@ -36,11 +36,11 @@ public class TodoDaoImpl implements TodoDao{
 				"target_date  BETWEEN current_date AND " +
 				"(ADDDATE(current_date, INTERVAL 1 DAY))" +
 				") " +
-				"ORDER BY target_date;";
+				"ORDER BY target_date DESC;";
 
 	private static final String DELETE_TODO_BY_ID =
 			"DELETE FROM todos WHERE task_id = ? " +
-			"ORDER BY target_date;";
+			"ORDER BY target_date DESC;";
 	private static final String UPDATE_TODO =
 			"UPDATE todos SET task_name = ?, target_date = ?, is_done = ? " +
 					"WHERE task_id = ?;";
@@ -137,7 +137,7 @@ public class TodoDaoImpl implements TodoDao{
 		String SEARCH_TODOS =
 			"SELECT * FROM todos WHERE FK_user_id_users = " + userId +
 					" AND (task_name LIKE '%" + keyword +"%') " +
-					"ORDER BY target_date;";
+					"ORDER BY target_date DESC;";
 
 		try(Connection connection = JDBCUtils.getConnection();
 		    PreparedStatement preparedStatement =
