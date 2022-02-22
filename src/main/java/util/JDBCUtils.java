@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class JDBCUtils {
+public class  JDBCUtils {
 
     // MySQL: local
     private static String jdbcURL = "jdbc:mysql://localhost:3306/demo";
