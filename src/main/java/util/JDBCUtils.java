@@ -13,17 +13,6 @@ public class  JDBCUtils {
 //    private static String jdbcUsername = "root";
 //    private static String jdbcPassword = "";
 
-//    // MySQL: Haroku (before Jan 2022)
-//    private static String jdbcURL =
-//        "jdbc:mysql://beb2971136c7b4:0aacc976" +
-//        "@us-cdbr-east-04.cleardb.com" +
-//        "/heroku_b5acde81bd4bd6e?" +
-//        "reconnect=true&useSSL=false&" +
-//        "useUnicode=true&characterEncoding=utf8&" +
-//        "characterSetResults=utf8";
-//    private static String jdbcUsername = "beb2971136c7b4";
-//    private static String jdbcPassword = "0aacc976";
-
     // MySQL: Haroku (since Feb 2022)
     private static String jdbcURL =
             "jdbc:mysql://b66b428e60e8f0:5232b9cb" +
